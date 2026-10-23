@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  # 1. Dịch vụ Cơ sở dữ liệu MySQL
+  mysql_db:
+    image: mysql:8.0
+    container_name: dulichso_mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: dulichso
+      MYSQL_ROOT_PASSWORD: secretpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database:/docker-entrypoint-initdb.d
+
+  # 2. Dịch vụ Backend Laravel (PHP 8.3)
+  laravel_app:
+    image: php:8.3-fpm
+    container_name: dulichso_app
+    restart: always
+    working_dir: /var/www/html
+    volumes:
+      - ../backend:/var/www/html
+    ports:
+      - "8000:8000"
+
+  # 3. Dịch vụ Python Service xử lý dữ liệu
+  python_service:
+    image: python:3.12-slim
+    container_name: dulichso_python
+    restart: always
+    working_dir: /app
+    volumes:
+      - ../python-service:/app
+    command: python main.py
+    ports:
+      - "5000:5000"
