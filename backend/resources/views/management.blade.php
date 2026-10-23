@@ -8,24 +8,21 @@
 </head>
 
 <body class="bg-gray-100 font-sans flex flex-col min-h-screen">
-    <!-- Phần thân trang có flex-grow để đẩy Footer xuống đáy -->
     <main class="flex-grow p-8">
         <div class="max-w-5xl mx-auto">
             
-            <!-- Tiêu đề -->
+
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold text-gray-800"><i class="fa-solid fa-users text-green-600"></i> Danh Sách Lớp & Điểm Danh</h1>
                 <a href="/" class="bg-gray-200 hover:bg-gray-300 px-4 py-2 rounded text-sm font-semibold transition shadow-sm">Về trang chủ</a>
             </div>
 
-            <!-- Thông báo điểm danh thành công -->
             @if(session('success'))
             <div class="bg-green-100 text-green-800 border-l-4 border-green-500 p-3 rounded mb-6 text-sm font-bold shadow-sm">
                 <i class="fa-solid fa-check-circle mr-1"></i> {{ session('success') }}
             </div>
             @endif
 
-            <!-- Khối Bảng Danh sách học sinh -->
             <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
                 <!-- Header của bảng -->
                 <div class="bg-gray-50 border-b border-gray-100 px-6 py-4 flex justify-between items-center">
@@ -33,7 +30,6 @@
                     <span class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">Sĩ số: {{ count($students) }} học sinh</span>
                 </div>
 
-                <!-- Bảng danh sách -->
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
@@ -93,7 +89,6 @@
         </div>
     </main>
 
-    <!-- Chân trang học thuật bắt buộc -->
     <footer class="bg-gray-800 text-gray-400 py-8 text-center mt-auto w-full">
         <p class="mb-2 text-gray-300">Học phần: <strong>CSE703073 - Lập trình ứng dụng web trong du lịch 2</strong> &mdash; Nhóm: <strong>Nhóm ĐT-17</strong></p>
         <p class="text-sm"><em>Sản phẩm học thuật &ndash; phục vụ mục đích đào tạo.</em></p>

@@ -1,38 +1,54 @@
 version: '3.8'
-
 services:
-  # 1. Dịch vụ Cơ sở dữ liệu MySQL
-  mysql_db:
-    image: mysql:8.0
-    container_name: dulichso_mysql
-    restart: always
+  app:
+    build:
+      context: ..   # Sửa thành chấm chấm (để lùi ra ngoài một cấp về thư mục gốc du-lich-hoc-duong)
+      dockerfile: Dockerfile
+    image: du-lich-hoc-duong-app
+    container_name: du_lich_app
+    restart: unless-stopped
+    tty: true
     environment:
-      MYSQL_DATABASE: dulichso
-      MYSQL_ROOT_PASSWORD: secretpassword
+      - SERVICE_NAME=app
+      - SERVICE_TAGS=dev
+    working_dir: /var/www
+    volumes:
+      - ..:/var/www   # Chú ý: Sửa ./:/var/www thành ..:/var/www để đồng bộ đúng thư mục gốc vào container
+    networks:
+      - app-network
+
+  webserver:
+    image: nginx:alpine
+    container_name: du_lich_nginx
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ..:/var/www   # Sửa ./:/var/www thành ..:/var/www
+      - ./conf.d/:/etc/nginx/conf.d/   # (Nếu file conf.d nằm cùng thư mục docker thì để nguyên hoặc điều chỉnh theo vị trí thực tế)
+    networks:
+      - app-network
+
+  db:
+    image: mysql:8.0
+    container_name: du_lich_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: du_lich_db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_password
     ports:
       - "3306:3306"
     volumes:
-      - ./database:/docker-entrypoint-initdb.d
+      - dbdata:/var/lib/mysql
+    networks:
+      - app-network
 
-  # 2. Dịch vụ Backend Laravel (PHP 8.3)
-  laravel_app:
-    image: php:8.3-fpm
-    container_name: dulichso_app
-    restart: always
-    working_dir: /var/www/html
-    volumes:
-      - ../backend:/var/www/html
-    ports:
-      - "8000:8000"
+volumes:
+  dbdata:
+    driver: local
 
-  # 3. Dịch vụ Python Service xử lý dữ liệu
-  python_service:
-    image: python:3.12-slim
-    container_name: dulichso_python
-    restart: always
-    working_dir: /app
-    volumes:
-      - ../python-service:/app
-    command: python main.py
-    ports:
-      - "5000:5000"
+networks:
+  app-network:
+    driver: bridge

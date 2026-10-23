@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: du-lich-hoc-duong-app
+    env: docker
+    plan: free
+    branch: main
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: true
+      - key: APP_KEY
+        value: base64:your-app-key-here

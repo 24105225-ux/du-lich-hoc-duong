@@ -11,7 +11,6 @@
 
 <body class="bg-gray-50 text-gray-800 font-sans antialiased flex flex-col min-h-screen">
 
-    <!-- Navbar Phân quyền 3 lớp -->
     <nav class="bg-blue-800 text-white shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
@@ -35,7 +34,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <div class="bg-blue-100 py-16 text-center border-b border-blue-200">
         <h1 class="text-4xl font-extrabold text-blue-900 mb-4">Hành Trình Trải Nghiệm - Gắn Liền Mục Tiêu Giáo Dục</h1>
         <p class="text-lg text-blue-700 max-w-2xl mx-auto mb-8">Nền tảng kết nối Nhà trường, Phụ huynh và Đơn vị tổ chức. Đảm bảo an toàn, minh bạch hồ sơ y tế và bám sát khung chương trình GDPT.</p>
@@ -55,7 +53,6 @@
         </div>
     </div>
 
-    <!-- Danh mục Chương trình trải nghiệm -->
     <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-4">
             <div>
@@ -63,7 +60,6 @@
                 <p class="text-gray-600 mt-2">Ánh xạ trực tiếp từ yêu cầu cần đạt của Bộ GD&ĐT.</p>
             </div>
 
-            <!-- FORM TÌM KIẾM ĂN TIỀN -->
             <form action="/" method="GET" class="w-full md:w-96 flex">
                 <input type="text" name="search" value="{{ request('search') }}" placeholder="Tìm tên tour, điểm đến..." class="w-full border border-gray-300 rounded-l px-4 py-2 focus:outline-none focus:border-blue-500">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-r"><i class="fa-solid fa-search"></i></button>
@@ -86,7 +82,6 @@
                 $imgUrl = $tourImages[$prog->id] ?? 'https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=600&auto=format&fit=crop';
                 @endphp
 
-                <!-- Khối hình ảnh mới có lớp phủ làm nổi bật text -->
                 <div class="h-40 w-full bg-cover bg-center relative" style="background-image: url('{{ $imgUrl }}')">
                     <div class="absolute inset-0 bg-black bg-opacity-20 transition hover:bg-opacity-10"></div>
                     <span class="absolute top-2 right-2 bg-yellow-400 text-yellow-900 text-xs font-bold px-2 py-1 rounded shadow-md z-10">Cấp: {{ $prog->edu_level }}</span>
@@ -103,7 +98,6 @@
                         <i class="fa-solid fa-shield-halved w-5 text-green-600"></i> <span class="truncate">{{ $prog->safety_protocol }}</span>
                     </div>
                 </div>
-                <!-- SỬA NÚT THÀNH ĐƯỜNG DẪN CÓ THỂ CLICK -->
                 <div class="p-5 pt-0 mt-auto border-t border-gray-100 pt-4 flex justify-between items-center">
                     <span class="text-lg font-bold text-red-600">{{ number_format($prog->base_price, 0, ',', '.') }}đ</span>
                     <a href="/chuong-trinh/{{ $prog->id }}" class="bg-blue-50 hover:bg-blue-100 text-blue-700 px-4 py-2 rounded text-sm font-semibold transition">Xem chi tiết <i class="fa-solid fa-arrow-right ml-1"></i></a>
@@ -114,7 +108,6 @@
     </main>
 
 
-    <!-- Chân trang bắt buộc -->
     <footer class="bg-gray-800 text-gray-400 py-8 text-center mt-auto">
         <p class="mb-2 text-gray-300">Học phần: <strong>CSE703073 - Lập trình ứng dụng web trong du lịch 2</strong> &mdash; Nhóm: <strong>Nhóm ĐT-17</strong></p>
         <p class="text-sm"><em>Sản phẩm học thuật &ndash; phục vụ mục đích đào tạo.</em></p>

@@ -14,7 +14,6 @@ class EnsureRole
         $user = $request->user();
         
         if (!$user || !in_array($user->role, $roles, true)) {
-            // Ghi nhat ky canh bao bao mat (Bat buoc theo Muc 9.2)
             Log::warning('phan_quyen.tu_choi', [
                 'user_id' => $user?->id,
                 'role' => $user?->role,

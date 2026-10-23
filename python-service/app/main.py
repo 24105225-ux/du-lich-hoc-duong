@@ -32,7 +32,6 @@ def map_curriculum(text: str = Query("di tích lịch sử"), k: int = 3):
         score = text_similarity(text, content)
         ranked.append((std, score))
     
-    # Sắp xếp theo điểm số từ cao xuống thấp
     ranked.sort(key=lambda x: x[1], reverse=True)
     
     return {

@@ -22,8 +22,6 @@
     <!-- Nội dung chính -->
     <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
         <div class="bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100">
-
-            <!-- Ảnh bìa và Tiêu đề Tour -->
             @php
             $tourImages = [
             1 => 'https://upload.wikimedia.org/wikipedia/commons/6/62/An_Duong_Vuong_Temple_Gate_Co_Loa.jpg?utm_source=vi.wikipedia.org&utm_campaign=index&utm_content=original', // Cổ Loa
@@ -37,10 +35,7 @@
             @endphp
 
             <div class="relative h-80 w-full bg-cover bg-center" style="background-image: url('{{ $imgUrl }}')">
-                <!-- Lớp phủ gradient -->
                 <div class="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"></div>
-
-                <!-- Nội dung tiêu đề -->
                 <div class="absolute bottom-0 left-0 p-8 w-full">
                     <div class="flex items-center gap-3 mb-4">
                         <span class="bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded shadow-sm">CẤP: {{ $program->edu_level }}</span>
@@ -52,8 +47,6 @@
                     </p>
                 </div>
             </div>
-
-            <!-- Khối chi tiết bên dưới -->
             <div class="p-6 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-10">
                 <div class="md:col-span-2">
                     <h2 class="text-xl font-bold text-gray-800 border-b pb-2 mb-4"><i class="fa-solid fa-bullseye text-blue-600 mr-2"></i>Mục tiêu giáo dục (Cần đạt)</h2>
@@ -74,7 +67,6 @@
                     </div>
                 </div>
 
-                <!-- Sidebar đặt tour -->
                 <div class="bg-gray-50 p-6 md:p-7 rounded-xl border border-gray-100 h-fit shadow-sm">
                     <div class="text-gray-500 text-sm mb-1 font-semibold uppercase tracking-wider">Chi phí dự kiến</div>
                     <div class="text-3xl font-extrabold text-red-600 mb-6">{{ number_format($program->base_price, 0, ',', '.') }}đ</div>
@@ -84,7 +76,6 @@
                         <p class="flex items-start gap-3"><i class="fa-solid fa-shield-heart text-green-500 text-lg w-5 text-center mt-0.5"></i> <span>An toàn: <strong>{{ $program->safety_protocol }}</strong></span></p>
                     </div>
 
-                    <!-- Nút Đăng ký thông minh -->
                     @if(session('user_role') == 'Ban Giám Hiệu')
                     <button class="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3.5 rounded-lg text-center transition-all shadow-md transform hover:scale-105" onclick="alert('Xác nhận đăng ký thành công! Mã hồ sơ chuyến đi đã được khởi tạo. Vui lòng theo dõi tiến độ phê duyệt tại Bảng Điều Khiển Ban Giám Hiệu.')">
                         <i class="fa-solid fa-check-circle mr-1"></i> Đăng ký chuyến đi
@@ -99,7 +90,6 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-800 text-gray-400 py-8 text-center mt-auto w-full">
         <p class="mb-2 text-gray-300">Học phần: <strong>CSE703073 - Lập trình ứng dụng web trong du lịch 2</strong> &mdash; Nhóm: <strong>Nhóm ĐT-17</strong></p>
         <p class="text-sm"><em>Sản phẩm học thuật &ndash; phục vụ mục đích đào tạo.</em></p>
